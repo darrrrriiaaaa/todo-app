@@ -47,7 +47,7 @@ function App() {
 
   const handleDelete = async (taskId) => {
     try {
-      const res = await fetch(`${API_URL}/api/tasks${taskId}`, {
+      const res = await fetch(`${API_URL}/api/tasks/${taskId}`, {
         method: "DELETE",
       });
       console.log(`${res} deleted successfully!`);
@@ -59,7 +59,7 @@ function App() {
 
   const updateTask = async(taskId, updatedFields) => {
     try {
-      const res = await fetch(`${API_URL}/api/tasks/api/tasks/${taskId}`, {
+      const res = await fetch(`${API_URL}/api/tasks/${taskId}`, {
         method: "PATCH",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify(updatedFields)
