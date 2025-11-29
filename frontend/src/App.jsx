@@ -12,9 +12,11 @@ function App() {
   const [sort, setSort] = useState("");
   const [edit, setEdit] = useState(null);
 
+  const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
+
   const fetchTasks = async() => {
       try {
-        const res = await fetch("http://localhost:5000/api/tasks");
+        const res = await fetch(`${API_URL}/api/tasks`);
         if (!res.ok) throw new Error("Failed to fetch tasks.");
         const data = await res.json();
         setTasks(data);
@@ -29,7 +31,7 @@ function App() {
 
   const handleSubmit = async (task) => {
     try {
-      const res = await fetch("http://localhost:5000/api/tasks", {
+      const res = await fetch(`${API_URL}/api/tasks`, {
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify(task)
@@ -45,7 +47,7 @@ function App() {
 
   const handleDelete = async (taskId) => {
     try {
-      const res = await fetch(`http://localhost:5000/api/tasks/${taskId}`, {
+      const res = await fetch(`${API_URL}/api/tasks${taskId}`, {
         method: "DELETE",
       });
       console.log(`${res} deleted successfully!`);
@@ -57,7 +59,7 @@ function App() {
 
   const updateTask = async(taskId, updatedFields) => {
     try {
-      const res = await fetch(`http://localhost:5000/api/tasks/${taskId}`, {
+      const res = await fetch(`${API_URL}/api/tasks/api/tasks/${taskId}`, {
         method: "PATCH",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify(updatedFields)
