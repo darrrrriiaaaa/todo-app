@@ -35,7 +35,7 @@ taskRouter.post("/", async (req, res) => {
 
 taskRouter.patch("/:taskId", async (req, res) => {
     try {
-        const task = await Task.findByIdAndUpdate(req.params.id, req.body, {new: true});
+        const task = await Task.findOneAndUpdate({taskId: req.params.taskId}, req.body, {new: true});
         res.json(task);
     } catch (err) {
         console.error(err);
